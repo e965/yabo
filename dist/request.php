@@ -8,6 +8,7 @@
 		'code' => 0, 'msg' => 'Пустой запрос'
 	];
 
+	header('Access-Control-Allow-Origin: *');
 	header('Content-Type: application/json');
 
 	include_once 'php_inc/db-init.php';
@@ -16,9 +17,16 @@
 		? $_SERVER['PHP_AUTH_USER']
 		: 'lmao';
 
-	$book = new Book($DB, 'piser');
+	$book = new Book($DB, $user);
+
+	if (array_key_exists('get', $_GET)) {
+		$book->getAll();
+	}
 
 	switch($_POST["action"]) {
+		case 'get':
+			$book->getAll(); break;
+
 		case 'add':
 			$book->add($_POST["title"], $_POST["author"], $_POST["genre"], $_POST["year"]); break;
 

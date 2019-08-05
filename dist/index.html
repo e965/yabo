@@ -1,15 +1,107 @@
-
 <!DOCTYPE HTML>
 <html lang="ru"><head>
 	<meta charset="utf-8">
-	<title>YABO – Yet another books organizer</title>
+	<title>Yet another books organizer</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-	<link rel="stylesheet" href="/assets/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/css/uikit.min.css">
 </head><body>
-	<p>Привет!</p>
+	<header class="uk-container uk-margin-top">
+		<h1 class="uk-text-center">Yet another books organizer</h1>
+	</header>
 
-	<script src="/assets/script.js" defer></script>
+	<main class="uk-container uk-margin-medium-top">
+		<div class="uk-text-right">
+			<button class="add-book-btn uk-button uk-button-primary uk-button-small" uk-toggle="target: .modal__book-actions"><span class="uk-margin-small-right" style="vertical-align: middle">Добавить книгу</span><i uk-icon="plus"></i></button>
+		</div>
+		<div class="books uk-margin-small-top">
+			<table class="uk-table uk-table-striped uk-table-small uk-table-middle">
+				<thead>
+					<th class="uk-text-nowrap">Название книги</th>
+					<th>Автор</th>
+					<th>Жанр</th>
+					<th class="uk-text-nowrap">Год выхода</th>
+					<th style="width: 50px; min-width: 50px">Опции</th>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</main>
+
+	<div class="alert-box uk-container uk-position-bottom-center uk-position-fixed uk-position-small"></div>
+
+	<div class="modal modal__book-actions" uk-modal>
+		<div class="uk-modal-dialog">
+			<div class="form">
+				<button class="uk-modal-close-default" type="button" uk-close></button>
+
+				<div class="uk-modal-header">
+					<h2 class="uk-modal-title">Добавить новую книгу</h2>
+				</div>
+
+				<div class="uk-modal-body">
+					<form id="action" class="uk-form-horizontal uk-margin-auto">
+						<input id="book_id" type="text" hidden>
+
+						<div>
+							<label class="uk-form-label" for="title">Название книги</label>
+							<div class="uk-form-controls">
+								<input class="uk-input" id="title" type="text" placeholder="Последнее желание" required>
+							</div>
+						</div>
+
+						<div class="uk-margin-small-top">
+							<label class="uk-form-label" for="author">Автор книги</label>
+							<div class="uk-form-controls">
+								<input class="uk-input" id="author" type="text" placeholder="Анджей Сапковский" required>
+							</div>
+						</div>
+
+						<div class="uk-margin-small-top">
+							<label class="uk-form-label" for="genre">Жанр</label>
+							<div class="uk-form-controls">
+								<select class="uk-select" id="genre" required>
+									<option>Фэнтези</option>
+									<option>Проза</option>
+									<option>Детектив</option>
+									<option>Научпоп</option>
+									<option>Роман</option>
+									<option>Рассказ</option>
+									<option value="custom">Другой вариант...</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="cgh uk-margin-small-top" hidden>
+							<label class="uk-form-label" for="genre_custom">Свой жанр</label>
+							<div class="uk-form-controls">
+								<input class="uk-input" id="genre_custom" type="text" placeholder="Комикс">
+							</div>
+						</div>
+
+						<div class="uk-margin-small-top">
+							<label class="uk-form-label" for="year">Год выхода</label>
+							<div class="uk-form-controls">
+								<input class="uk-input" id="year" type="number" placeholder="1993" required>
+							</div>
+						</div>
+					</form>
+
+					<div uk-alert hidden></div>
+				</div>
+
+				<div class="uk-modal-footer uk-text-right">
+					<button class="uk-button uk-button-default uk-modal-close">Отмена</button>
+					<button form="action" class="submit-btn uk-button uk-button-primary">Добавить</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit-icons.min.js" defer></script>
+
+	<script src="./script.js" defer></script>
 </body></html>
