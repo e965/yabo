@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 					bookRow.remove()
 
-					newAlert({ text: `Книга "${title}" удалена` })
+					newAlert({ text: data.msg })
 				} else if (data.code === 0) {
 					newAlert({ text: data.msg, type: 'warning' })
 				} else if (data.code === 2) {

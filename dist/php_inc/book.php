@@ -65,7 +65,7 @@
 				return;
 			}
 
-			if ($year >= date('Y')) {
+			if ($year > date('Y')) {
 				$this->result(2, 'Ошибка добавления книги: год больше текущего');
 				return;
 			}
@@ -114,7 +114,7 @@
 
 			$query->close();
 
-			if ($title === '') {
+			if ($user === '') {
 				$this->result(2, 'Книги с ID ' . $book_id . ' не существует');
 				return;
 			}
@@ -187,13 +187,13 @@
 		public function rm($book_id) {
 			$book_id = intval($book_id);
 
-			$query = $this->DB->prepare("SELECT user FROM books WHERE id = ?");
+			$query = $this->DB->prepare("SELECT title, user FROM books WHERE id = ?");
 
 			$query->bind_param("i", $book_id);
 
 			$query->execute();
 
-			$query->bind_result($user);
+			$query->bind_result($title, $user);
 			$query->fetch();
 
 			$query->close();
@@ -210,7 +210,7 @@
 			$query->bind_param("i", $book_id);
 
 			$queryState = $query->execute()
-				? $this->result(1, 'Книга с ID ' . $book_id . ' удалена')
+				? $this->result(1, 'Книга "' . $title . '" удалена')
 				: $this->result(2, 'Ошибка удаления книги: ' . $this->DB->error);
 
 			$query->close();
